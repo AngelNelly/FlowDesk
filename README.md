@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Flowdesk - Business Management Platform
 
 > **"Built for Africans, by Africans"** - A comprehensive digital record-keeping and business management tool for African SMEs.
@@ -316,3 +317,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Flowdesk** - *Digitize. Grow. Succeed.*
+=======
+# FlowDesk
+>>>>>>> ba4bab8d088f8506c925593d020068f48e17b2f9
