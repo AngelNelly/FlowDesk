@@ -1,0 +1,470 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #3B82F6;
+  --color-secondary: #10B981;
+  --color-accent: #F59E0B;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2937;
+}
+
+/* Dark mode support */
+.dark {
+  color-scheme: dark;
+}
+
+/* Custom theme variables */
+.theme-blue-light {
+  --color-primary: #3B82F6;
+  --color-secondary: #10B981;
+  --color-accent: #F59E0B;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2937;
+}
+
+.theme-blue-dark {
+  --color-primary: #60A5FA;
+  --color-secondary: #34D399;
+  --color-accent: #FBBF24;
+  --color-background: #0F172A;
+  --color-surface: #1E293B;
+  --color-text: #F1F5F9;
+}
+
+.theme-purple-light {
+  --color-primary: #8B5CF6;
+  --color-secondary: #06B6D4;
+  --color-accent: #F59E0B;
+  --color-background: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2937;
+}
+
+.theme-purple-dark {
+  --color-primary: #A78BFA;
+  --color-secondary: #22D3EE;
+  --color-accent: #FBBF24;
+  --color-background: #0C0A09;
+  --color-surface: #1C1917;
+  --color-text: #F5F5F4;
+}
+
+.theme-green-light {
+  --color-primary: #10B981;
+  --color-secondary: #3B82F6;
+  --color-accent: #F59E0B;
+  --color-background: #F0FDF4;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2937;
+}
+
+.theme-green-dark {
+  --color-primary: #34D399;
+  --color-secondary: #60A5FA;
+  --color-accent: #FBBF24;
+  --color-background: #0A0A0A;
+  --color-surface: #171717;
+  --color-text: #F5F5F5;
+}
+
+.theme-orange-light {
+  --color-primary: #F97316;
+  --color-secondary: #10B981;
+  --color-accent: #3B82F6;
+  --color-background: #FFFBEB;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2937;
+}
+
+.theme-orange-dark {
+  --color-primary: #FB923C;
+  --color-secondary: #34D399;
+  --color-accent: #60A5FA;
+  --color-background: #0C0A09;
+  --color-surface: #1C1917;
+  --color-text: #F5F5F4;
+}
+
+/* PWA specific styles */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Mobile-first responsive utilities */
+@layer utilities {
+  .mobile-safe-area {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Enhanced mobile interactions */
+button, [role="button"] {
+  @apply touch-manipulation;
+}
+
+/* Print styles */
+@media print {
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+  
+  .print\:border-none {
+    border: none !important;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus indicators for accessibility */
+.focus-visible:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Loading animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Desktop layout fixes */
+@media (min-width: 1024px) {
+  .sidebar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 16rem; /* 64 * 0.25rem = 16rem */
+  }
+  
+  .main-content-offset {
+    margin-left: 16rem; /* 64 * 0.25rem = 16rem */
+  }
+}
+
+/* Ensure proper text wrapping and spacing */
+.sidebar-nav-item {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Fix for overlapping text in sidebar */
+.sidebar-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ensure proper flex layout */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-container {
+  flex-shrink: 0;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flex item from overflowing */
+}
+
+/* Light mode specific styles for consistency */
+.light-mode-surface {
+  background-color: #F8FAFC;
+}
+
+.light-mode-card {
+  background-color: #FFFFFF;
+}
+
+/* Dark mode specific styles */
+.dark body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Enhanced form input styles for both modes */
+input, select, textarea {
+  transition: all 0.2s ease;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #374151;
+  border-color: #6B7280;
+  color: #F9FAFB;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #60A5FA;
+  box-shadow: 0 0 0 1px #60A5FA;
+  background-color: #4B5563;
+}
+
+/* Light mode form inputs */
+input:not(.dark input),
+select:not(.dark select),
+textarea:not(.dark textarea) {
+  background-color: #FFFFFF;
+  border-color: #D1D5DB;
+  color: #1F2937;
+}
+
+input:focus:not(.dark input:focus),
+select:focus:not(.dark select:focus),
+textarea:focus:not(.dark textarea:focus) {
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 1px #3B82F6;
+}
+
+/* Enhanced text visibility classes */
+/* Mobile responsive utilities */
+@layer utilities {
+  .mobile-table-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-button-full {
+    @apply w-full sm:w-auto;
+  }
+  
+  .mobile-grid-stack {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  .mobile-flex-stack {
+    @apply flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4;
+  }
+  
+  .mobile-text-responsive {
+    @apply text-sm sm:text-base;
+  }
+  
+  .mobile-padding-responsive {
+    @apply px-3 sm:px-6;
+  }
+}
+
+/* Enhanced mobile table styles */
+@media (max-width: 640px) {
+  .mobile-table-container {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+  
+  .mobile-table-cell {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .mobile-hide {
+    display: none;
+  }
+}
+
+/* Dark mode text improvements */
+.dark {
+  /* Ensure all text is white in dark mode */
+  color: #FFFFFF;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #FFFFFF;
+}
+
+.dark p,
+.dark span,
+.dark div {
+  color: #FFFFFF;
+}
+
+.dark label {
+  color: #FFFFFF;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #374151;
+  border-color: #6B7280;
+  color: #FFFFFF;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #9CA3AF;
+}
+
+.dark table {
+  color: #FFFFFF;
+}
+
+.dark th {
+  color: #FFFFFF;
+  background-color: #374151;
+}
+
+.dark td {
+  color: #FFFFFF;
+}
+
+.dark button {
+  color: #FFFFFF;
+}
+
+.dark a {
+  color: #FFFFFF;
+}
+
+/* Light mode text improvements */
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6,
+:not(.dark) h1,
+:not(.dark) h2,
+:not(.dark) h3,
+:not(.dark) h4,
+:not(.dark) h5,
+:not(.dark) h6 {
+  color: #1F2937;
+}
+
+.light p,
+.light span,
+.light div,
+:not(.dark) p,
+:not(.dark) span,
+:not(.dark) div {
+  color: #1F2937;
+}
+
+.light label,
+:not(.dark) label {
+  color: #374151;
+}
+
+.light input,
+.light select,
+.light textarea,
+:not(.dark) input,
+:not(.dark) select,
+:not(.dark) textarea {
+  background-color: #FFFFFF;
+  border-color: #D1D5DB;
+  color: #1F2937;
+}
+
+.light input::placeholder,
+.light textarea::placeholder,
+:not(.dark) input::placeholder,
+:not(.dark) textarea::placeholder {
+  color: #6B7280;
+}
+
+.light table,
+:not(.dark) table {
+  color: #1F2937;
+}
+
+.light th,
+:not(.dark) th {
+  color: #1F2937;
+  background-color: #F9FAFB;
+}
+
+.light td,
+:not(.dark) td {
+  color: #1F2937;
+}
+
+.light button,
+:not(.dark) button {
+  color: #1F2937;
+}
+
+.light a,
+:not(.dark) a {
+  color: #1F2937;
+}
